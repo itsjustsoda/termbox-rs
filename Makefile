@@ -9,7 +9,7 @@ termbox:
 	mkdir -p $(BUILDDIR)
 	$(RUSTC) $(RUSTFLAGS) src/termbox/lib.rs --out-dir=$(BUILDDIR)
 
-examples:
+examples: termbox
 	$(RUSTC) $(RUSTFLAGS) -L $(BUILDDIR) examples/test1.rs --out-dir=$(BUILDDIR)
 
 clean:
