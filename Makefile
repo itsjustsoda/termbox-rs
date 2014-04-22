@@ -18,7 +18,7 @@ clean:
 	rm -f $(BUILDDIR)/test1
 	rm -rf doc
 
-doc:
+doc: termbox
 	$(RUSTDOC) src/termbox/lib.rs
 
-.PHONY: clean doc examples
+.PHONY: clean doc examples termbox
