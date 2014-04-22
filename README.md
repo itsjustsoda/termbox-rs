@@ -1,4 +1,4 @@
-termbox-rs[![Build Status](https://travis-ci.org/sodaplayer/termbox-rs.svg?branch=master)](https://travis-ci.org/sodaplayer/termbox-rs)
+termbox-rs [![Build Status](https://travis-ci.org/sodaplayer/termbox-rs.svg?branch=master)](https://travis-ci.org/sodaplayer/termbox-rs)
 ==========
 A wrapper for [termbox](https://github.com/nsf/termbox/).
 There already exists another [wrapper](https://github.com/shinichy/rust-termbox),
