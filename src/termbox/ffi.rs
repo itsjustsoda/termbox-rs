@@ -103,8 +103,8 @@ pub static TB_EVENT_KEY    : c_int = 1;
 pub static TB_EVENT_RESIZE : c_int = 2;
 
 pub struct tb_event {
-    type_ : uint8_t,
-    mod_  : uint8_t,
+    _type : uint8_t,
+    _mod  : uint8_t,
     key   : uint16_t,
     ch    : uint32_t,
     w     : int32_t,
