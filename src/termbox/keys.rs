@@ -1,6 +1,6 @@
 pub mod ffi;
 
-pub enum key {
+pub enum Key {
     F1         = ffi::TB_KEY_F1,
     F2         = ffi::TB_KEY_F2,
     F3         = ffi::TB_KEY_F3,
@@ -61,14 +61,14 @@ pub enum key {
 }
 
 // Clashing codes
-pub static Backspace      : key = CTRL_H;
-pub static Ctrl2          : key = CTRL_TILDE;
-pub static CtrlI          : key = TAB;
-pub static CtrlM          : key = ENTER;
-pub static CtrlLsqBracket : key = ESC;
-pub static Ctrl3          : key = ESC;
-pub static CtrlBackslash  : key = CTRL_4;
-pub static CtrlRsqBracket : key = CTRL_5;
-pub static CtrlSlash      : key = CTRL_7;
-pub static CtrlUnderscore : key = CTRL_7;
-pub static Ctrl8          : key = BACKSPACE2;
+pub static Backspace      : Key = CtrlH;
+pub static Ctrl2          : Key = CtrlTilde;
+pub static CtrlI          : Key = Tab;
+pub static CtrlM          : Key = Enter;
+pub static CtrlLsqBracket : Key = Esc;
+pub static Ctrl3          : Key = Esc;
+pub static CtrlBackslash  : Key = Ctrl4;
+pub static CtrlRsqBracket : Key = Ctrl5;
+pub static CtrlSlash      : Key = Ctrl7;
+pub static CtrlUnderscore : Key = Ctrl7;
+pub static Ctrl8          : Key = Backspace2;
