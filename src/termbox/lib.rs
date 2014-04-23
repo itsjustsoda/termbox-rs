@@ -8,11 +8,12 @@
 extern crate libc;
 
 pub mod ffi;
+pub mod keys;
 
 pub fn init() -> int {
     unsafe { ffi::tb_init() as int }
 }
 
 pub fn shutdown() {
-    unsafe { ffi::tb_shutdown() }
+    unsafe { ffi::tb_shutdown() };
 }
