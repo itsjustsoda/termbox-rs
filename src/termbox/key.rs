@@ -1,4 +1,5 @@
 pub mod ffi;
+//use ffi; // FIXME
 
 pub enum Key {
     F1         = ffi::TB_KEY_F1,

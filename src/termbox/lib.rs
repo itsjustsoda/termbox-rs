@@ -8,40 +8,35 @@
 extern crate libc;
 
 pub mod ffi;
-pub mod keys;
+pub mod key;
+pub mod cell;
+pub mod init_error;
 
-pub fn init() -> int {
-    unsafe { ffi::tb_init() as int }
+pub struct Termbox;
+
+pub fn init() -> Result<Termbox, init_error::InitError> {
+    unsafe {
+        match ffi::tb_init() as int  {
+            -1 => Err(init_error::UnsupportedTerminal),
+            -2 => Err(init_error::FailedToOpenTTY),
+            -3 => Err(init_error::PipeTrapError),
+            _ =>  Ok(Termbox)
+        }
+    }
 }
 
-pub fn shutdown() {
-    unsafe { ffi::tb_shutdown() };
-}
+impl Termbox {
+    pub fn shutdown(&self) {
+        unsafe { ffi::tb_shutdown() };
+    }
 
-pub fn present() {
-    unsafe { ffi::tb_present() };
+    pub fn present(&self) {
+        unsafe { ffi::tb_present() };
+    }
 }
 
 pub enum Mod {
     Alt = ffi::TB_MOD_ALT
-}
-
-pub enum Color {
-    Default = ffi::TB_DEFAULT,
-    Black = ffi::TB_BLACK,
-    Red = ffi::TB_RED,
-    Green = ffi::TB_GREEN,
-    Yellow = ffi::TB_YELLOW,
-    Blue = ffi::TB_BLUE,
-    Magenta = ffi::TB_MAGENTA,
-    Cyan = ffi::TB_CYAN,
-    White = ffi::TB_WHITE
-}
-
-pub enum Attributes {
-    Bold = ffi::TB_BOLD,
-    Underline = ffi::TB_UNDERLINE,
-    Reverse = ffi::TB_REVERSE
 }
 
 pub enum EventType {
