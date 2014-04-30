@@ -93,9 +93,9 @@ pub static TB_UNDERLINE : c_int = 0x0200;
 pub static TB_REVERSE   : c_int = 0x0400;
 
 pub struct tb_cell {
-    ch: uint32_t,
-    fg: uint16_t,
-    bg: uint16_t
+    pub ch: uint32_t,
+    pub fg: uint16_t,
+    pub bg: uint16_t
 }
 
 // Events
@@ -103,12 +103,12 @@ pub static TB_EVENT_KEY    : c_int = 1;
 pub static TB_EVENT_RESIZE : c_int = 2;
 
 pub struct tb_event {
-    _type : uint8_t,
-    _mod  : uint8_t,
-    key   : uint16_t,
-    ch    : uint32_t,
-    w     : int32_t,
-    h     : int32_t
+    pub _type : uint8_t,
+    pub _mod  : uint8_t,
+    pub key   : uint16_t,
+    pub ch    : uint32_t,
+    pub w     : int32_t,
+    pub h     : int32_t
 }
 
 pub static TB_EUNSUPPORTED_TERMINAL : c_int = -1;
@@ -150,8 +150,8 @@ extern "C" {
     pub fn tb_select_input_mode(mode: c_int) -> c_int;
     pub fn tb_select_output_mode(mode: c_int) -> c_int;
 
-    pub fn tb_peek_event(event: *mut tb_event, timeout: c_int);
-    pub fn tb_poll_event(event: *mut tb_event);
+    pub fn tb_peek_event(event: *tb_event, timeout: c_int);
+    pub fn tb_poll_event(event: *tb_event);
 
     pub fn tb_utf8_char_length(c: c_char) -> c_int;
     pub fn tb_utf8_char_to_unicode(out: *uint32_t, c: *c_char) -> c_int;
