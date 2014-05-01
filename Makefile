@@ -25,4 +25,7 @@ clean:
 doc: termbox
 	$(RUSTDOC) -L $(BUILDDIR) src/termbox/lib.rs -o $(DOC_DIR)
 
-.PHONY: clean doc examples termbox
+run: examples
+	./examples/test1
+
+.PHONY: clean doc examples termbox run
