@@ -47,7 +47,7 @@ impl Termbox {
     }
 
     pub fn hide_cursor(&self) {
-        unsafe { ffi::tb_set_cursor(ffi::TB_HIDE_CURSOR, ffi::TB_KEY_F1) };
+        unsafe { ffi::tb_set_cursor(ffi::TB_HIDE_CURSOR, ffi::TB_HIDE_CURSOR) };
     }
 
     pub fn put_cell(&self, x: int, y: int, cell: &cell::Cell) {
@@ -62,7 +62,23 @@ impl Termbox {
         unsafe { ffi::tb_put_cell(x as i32, y as i32, tb_cell_ptr) }
     }
 
-    // TODO: blit()
+    pub fn blit(&self, x: int, y: int, w: int, h: int, cells: &[cell::Cell]) {
+        let mut tb_cells: Vec<ffi::tb_cell> =
+            Vec::with_capacity(std::num::abs(w * h).to_uint().unwrap());
+
+        for cell in cells.iter() {
+            tb_cells.push(ffi::tb_cell {
+                ch: cell.ch as u32,
+                fg: cell.fg.to_u16(),
+                bg: cell.bg.to_u16()
+            });
+        }
+
+        let tb_cell_ptr = tb_cells.as_ptr();
+        unsafe {
+            ffi::tb_blit(x as i32, y as i32, w as i32, h as i32, tb_cell_ptr)
+        }
+    }
  
     // TODO: select_input_mode()
 

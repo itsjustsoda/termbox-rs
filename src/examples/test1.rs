@@ -2,6 +2,7 @@ extern crate termbox;
 
 use termbox::init;
 use termbox::Termbox;
+use termbox::cell;
 
 fn main() {
     let init = termbox::init();
@@ -16,21 +17,17 @@ fn main() {
         }
     }
 
-    tb.set_cursor(1, 2);
-    tb.put_cell(1, 3, &termbox::cell::Cell {
-        ch: 'a',
-        fg: termbox::cell::ColorStyle(termbox::cell::Red),
-        bg: termbox::cell::ColorStyle(termbox::cell::Yellow)
-    });
+    tb.blit(1, 3, 10, 10,
+        [
+            cell::Cell {
+                ch: 'a',
+                fg: cell::ColorStyle(cell::Red),
+                bg: cell::ColorStyle(cell::Yellow)
+            },
+            ..1
+        ]);
+
     tb.present();
-
-    let ev: termbox::event::Event = tb.poll_event().unwrap();
-
-    match ev {
-        termbox::event::KeyEvent(a, b, c) => println!("{}", c),
-        _ => fail!()
-    }
-
     tb.poll_event();
     tb.shutdown();
 }
