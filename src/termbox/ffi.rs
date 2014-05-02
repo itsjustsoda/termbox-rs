@@ -1,4 +1,5 @@
 #![allow(non_camel_case_types)]
+#![allow(dead_code)]
 
 extern crate libc;
 
@@ -116,6 +117,11 @@ pub static TB_EFAILED_TO_OPEN_TTY   : c_int = -2;
 pub static TB_EPIPE_TRAP_ERROR      : c_int = -3;
 
 pub static TB_HIDE_CURSOR : c_int = -1;
+
+// Inputs
+pub static TB_INPUT_CURRENT : c_int = 0;
+pub static TB_INPUT_ESC     : c_int = 1;
+pub static TB_INPUT_ALT     : c_int = 2;
 
 // Outputs
 pub static TB_OUTPUT_CURRENT   : c_int = 0;

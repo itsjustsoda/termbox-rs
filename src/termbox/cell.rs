@@ -16,7 +16,7 @@ pub enum Color {
     Blue = ffi::TB_BLUE as u8,
     Magenta = ffi::TB_MAGENTA as u8,
     Cyan = ffi::TB_CYAN as u8,
-    White = ffi::TB_WHITE as u8
+    White = ffi::TB_WHITE as u8,
 }
 
 pub enum Attribute {

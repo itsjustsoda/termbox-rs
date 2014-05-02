@@ -80,7 +80,15 @@ impl Termbox {
         }
     }
  
-    // TODO: select_input_mode()
+    pub fn select_input_mode(&self, input: input::Input) -> input::Input {
+        unsafe {
+            match ffi::tb_select_input_mode(input as i32) {
+                ffi::TB_INPUT_ESC => input::Esc,
+                ffi::TB_INPUT_ALT => input::Alt,
+                _ => fail!("somehow returned a nonexistent input mode")
+            }
+        }
+    }
 
     pub fn select_output_mode(&self, output: output::Output) -> output::Output {
         unsafe {
@@ -181,5 +189,14 @@ pub mod output {
         _256 = ffi::TB_OUTPUT_256,
         _216 = ffi::TB_OUTPUT_216,
         Grayscale = ffi::TB_OUTPUT_GRAYSCALE
+    }
+}
+
+pub mod input {
+    use ffi;
+    pub enum Input {
+        Current = ffi::TB_INPUT_CURRENT,
+        Esc = ffi::TB_INPUT_ESC,
+        Alt = ffi::TB_INPUT_ALT
     }
 }
