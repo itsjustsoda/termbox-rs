@@ -122,7 +122,7 @@ impl Termbox {
                         ev.key,
                         std::char::from_u32(ev.ch).unwrap())),
                 2 => Ok(event::ResizeEvent(ev.w, ev.h)),
-                _ => Err(box "event error: timeout")
+                _ => Err("event error: timeout".to_owned())
             }
         }
     }
@@ -147,7 +147,7 @@ impl Termbox {
                         ev.key,
                         std::char::from_u32(ev.ch).unwrap())),
                 2 => Ok(event::ResizeEvent(ev.w, ev.h)),
-                _ => Err(box "event error")
+                _ => Err("event error".to_owned())
             }
         }
     }
